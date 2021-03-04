@@ -21,6 +21,6 @@ TBD
 
 ## License
 
-The "Hospital Administration" project is maintained by [KS-plus e.V.](https://ks-plus.org/en/welcome/), a non-profit association dedicated to supporting [Kirpal Sagar](https://kirpal-sagar.org/en/welcome/).
+The "Administration" project is maintained by [KS-plus e.V.](https://ks-plus.org/en/welcome/), a non-profit association dedicated to supporting [Kirpal Sagar](https://kirpal-sagar.org/en/welcome/).
 
-It is licensed under the [Apache License Version 2.0](https://github.com/ksch-workflows/ksch-workflows/blob/master/LICENSE).
+It is licensed under the [Apache License Version 2.0](https://github.com/ksch-workflows/administration/blob/main/LICENSE).
