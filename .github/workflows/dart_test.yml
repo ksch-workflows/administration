@@ -1,0 +1,20 @@
+name: Dart Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  dart-test:
+    name: Run the Dart tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - run: cd apps/administrations_web
+      - run: flutter pub get
+      - run: flutter test
