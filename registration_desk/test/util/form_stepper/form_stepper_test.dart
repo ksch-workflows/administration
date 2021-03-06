@@ -10,8 +10,7 @@ void main() {
     var exampleStepper = ExampleStepper();
     await tester.open(exampleStepper);
 
-    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
-    await tester.enterText(firstStepInputField, "John Doe");
+    await tester.enterText(find.byKey(const ValueKey("firstStepInput")), "John Doe");
     await tester.pump();
 
     expect(exampleStepper.firstStepInputController.text, equals("John Doe"));
@@ -20,8 +19,7 @@ void main() {
   testWidgets("Should go to next step", (tester) async {
     await tester.open(ExampleStepper());
 
-    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
-    await tester.enterText(firstStepInputField, "John Doe");
+    await tester.enterText(find.byKey(const ValueKey("firstStepInput")), "John Doe");
     await tester.pump();
 
     await goToNextStep(tester);
@@ -31,8 +29,7 @@ void main() {
 
   testWidgets("Should go to previous step", (tester) async {
     await tester.open(ExampleStepper());
-    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
-    await tester.enterText(firstStepInputField, "John Doe");
+    await tester.enterText(find.byKey(const ValueKey("firstStepInput")), "John Doe");
     await tester.pump();
     await goToNextStep(tester);
     expectOnSecondPage(tester);
@@ -56,14 +53,14 @@ void main() {
 
   testWidgets("Should validate form before going to the next step", (tester) async {
     await tester.open(ExampleStepper());
+    await tester.enterText(find.byKey(const ValueKey("firstStepInput")), "");
 
-    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
-    await tester.enterText(firstStepInputField, "");
     await goToNextStep(tester);
 
     expect(find.text("The input for the first step is mandatory."), findsOneWidget);
   });
 }
+
 
 Future goToNextStep(WidgetTester tester) async {
   var continueButton = find.byKey(const ValueKey("continueButton"));

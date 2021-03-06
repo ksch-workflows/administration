@@ -19,7 +19,6 @@ class RegistrationDashboard extends StatelessWidget {
             alignment: WrapAlignment.start,
             children: const [
               TileButton(icon: Icons.menu_book, title: "Register patient"),
-              TileButton(icon: Icons.money, title: "Process payment"),
             ],
           ),
         ),
