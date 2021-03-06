@@ -18,9 +18,7 @@ void main() {
 
   testWidgets("Should go to next step", (tester) async {
     await tester.open(ExampleStepper());
-
     await tester.enterText(find.byKey(const ValueKey("firstStepInput")), "John Doe");
-    await tester.pump();
 
     await goToNextStep(tester);
 
@@ -30,7 +28,6 @@ void main() {
   testWidgets("Should go to previous step", (tester) async {
     await tester.open(ExampleStepper());
     await tester.enterText(find.byKey(const ValueKey("firstStepInput")), "John Doe");
-    await tester.pump();
     await goToNextStep(tester);
     expectOnSecondPage(tester);
 
