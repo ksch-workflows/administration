@@ -10,7 +10,7 @@ class WebScaffold extends StatelessWidget {
   final Widget floatingActionButton;
   final Function onNavigateBack;
 
-  WebScaffold({
+  const WebScaffold({
     @required this.title,
     @required this.body,
     this.onNavigateBack,
@@ -30,7 +30,7 @@ class WebScaffold extends StatelessWidget {
                 title: title,
                 onNavigateBack: onNavigateBack,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               _buildBodyWrapper(constraints)
