@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:registration_desk/util/form_stepper.dart";
+import "package:registration_desk/util/form_stepper/form_stepper.dart";
 import "package:registration_desk/util/test_bench.dart";
 
 // Start via commandline: flutter run -d chrome test/util/form_stepper/form_stepper_example.dart

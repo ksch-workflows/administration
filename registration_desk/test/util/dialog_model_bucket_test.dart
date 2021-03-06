@@ -1,4 +1,4 @@
-import "package:registration_desk/util/form_stepper.dart";
+import "package:registration_desk/util/form_stepper/form_stepper.dart";
 import "package:registration_desk/util/singleton_bucket.dart";
 import "package:test/test.dart";
 

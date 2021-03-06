@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../../util/form_stepper.dart";
+import "../../../util/form_stepper/form_stepper.dart";
 
 class VisitTypeFormStep implements FormStep {
   final _formKey = GlobalKey<FormState>();

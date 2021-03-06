@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../core/patient/patient.dart";
-import "../../../util/form_stepper.dart";
+import "../../../util/form_stepper/form_stepper.dart";
 import "../../../util/singleton_bucket.dart";
 import "contact_information.dart";
 import "personal_data.dart";
