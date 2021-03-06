@@ -5,7 +5,6 @@ import "package:registration_desk/util/test_bench.dart";
 
 import "form_stepper_example.dart";
 
-
 void main() {
   testWidgets("Should allow to enter text for the first step", (tester) async {
     var exampleStepper = ExampleStepper();
@@ -20,6 +19,10 @@ void main() {
 
   testWidgets("Should go to next step", (tester) async {
     await tester.open(ExampleStepper());
+
+    // var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+    // await tester.enterText(firstStepInputField, "John Doe");
+    //await tester.pump();
 
     await goToNextStep(tester);
 
@@ -44,8 +47,6 @@ void main() {
 
     var button = find.byKey(ValueKey("cancelButton"));
     await tester.tap(button);
-
-
 
     expect(canceledHasBeenCalled, isTrue);
   });
@@ -116,22 +117,16 @@ extension WidgetTesterExtensions on WidgetTester {
   }
 
   void verify(
-      dynamic actual,
-      dynamic matcher, {
-        String reason,
-        dynamic skip, // true or a String
-      }) {
-
+    dynamic actual,
+    dynamic matcher, {
+    String reason,
+    dynamic skip, // true or a String
+  }) {
     try {
       expect(actual, matcher, reason: reason, skip: skip);
-    } catch (e) {
+    } on TestFailure catch (_) {
       printStringValueKeys();
-      throw e;
+      rethrow;
     }
-
-
-
   }
-
 }
-
