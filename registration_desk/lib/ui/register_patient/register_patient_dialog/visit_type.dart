@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
-import 'package:registration_desk/util/test_bench.dart';
 
 import "../../../util/form_stepper/form_stepper.dart";
+import "../../../util/test_bench.dart";
 
 class VisitTypeFormStep implements FormStep {
   final _formKey = GlobalKey<FormState>();
@@ -57,49 +57,62 @@ class _VisitTypeFormStepBodyState extends State<_VisitTypeFormStepBody> {
           Row(
             children: [
               Expanded(
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                      labelText: widget.visitTypeSelection.value != null ? "Visit type" : null,
-                      border: const OutlineInputBorder(),
-                      contentPadding: const EdgeInsets.only(left: 10)),
-                  child: Container(
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButtonFormField<String>(
-                        value: widget.visitTypeSelection.value,
-                        focusNode: initialFocus,
-                        icon: const Icon(Icons.arrow_downward),
-                        iconSize: 24,
-                        elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple),
-                        hint: const Text("Please select a visit type..."),
-                        onChanged: (newValue) {
-                          setState(() {
-                            widget.visitTypeSelection.value = newValue;
-                          });
-                        },
-                        items: <String>["OPD", "IPD"].map<DropdownMenuItem<String>>((value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please select a visit type";
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                child: _visitTypeSelector(),
               ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  InputDecorator _visitTypeSelector() {
+    return InputDecorator(
+      decoration: InputDecoration(
+        labelText: widget.visitTypeSelection.value != null ? "Visit type" : null,
+        border: const OutlineInputBorder(),
+        contentPadding: const EdgeInsets.only(left: 10),
+      ),
+      child: Container(
+        child: DropdownButtonHideUnderline(
+          child: DropdownButtonFormField<String>(
+            value: widget.visitTypeSelection.value,
+            focusNode: initialFocus,
+            icon: const Icon(Icons.arrow_downward),
+            iconSize: 24,
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            hint: const Text("Please select a visit type..."),
+            onChanged: _handleVisitTypeSelectionChanged,
+            items: _visitTypeOptions(),
+            validator: _validateVisitTypeSelection,
+          ),
+        ),
+      ),
+    );
+  }
+
+  String _validateVisitTypeSelection(value) {
+    if (value == null || value.isEmpty) {
+      return "Please select a visit type";
+    } else {
+      return null;
+    }
+  }
+
+  List<DropdownMenuItem<String>> _visitTypeOptions() {
+    return <String>["OPD", "IPD"].map<DropdownMenuItem<String>>((value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(value),
+      );
+    }).toList();
+  }
+
+  void _handleVisitTypeSelectionChanged(newValue) {
+    setState(() {
+      widget.visitTypeSelection.value = newValue;
+    });
   }
 }
 
