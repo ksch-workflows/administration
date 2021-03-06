@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
+import 'package:flutter/widgets.dart';
 import "package:flutter_test/flutter_test.dart";
 import "package:registration_desk/util/test_bench.dart";
 
 import "form_stepper_example.dart";
+
 
 void main() {
   testWidgets("Should allow to enter text for the first step", (tester) async {
@@ -42,6 +44,8 @@ void main() {
 
     var button = find.byKey(ValueKey("cancelButton"));
     await tester.tap(button);
+
+
 
     expect(canceledHasBeenCalled, isTrue);
   });
@@ -83,10 +87,10 @@ void expectOnFirstPage(WidgetTester tester) {
 
 void expectOnSecondPage(WidgetTester tester) {
   var inputField = find.byKey(ValueKey("secondStepInput"));
-  expect(inputField, findsOneWidget);
+  tester.verify(inputField, findsOneWidget);
 
   var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
-  expect(firstStepInputField, findsNothing);
+  tester.verify(firstStepInputField, findsNothing);
 }
 
 extension WidgetTesterExtensions on WidgetTester {
@@ -96,4 +100,38 @@ extension WidgetTesterExtensions on WidgetTester {
       child: widgetUnderTest,
     ));
   }
+
+  void printStringValueKeys() {
+    print("══╡ CURRENT STRING VALUE KEYS ╞═════════════════════════════════════════════════════════════════════");
+    var allWidgets = this.allWidgets;
+    for (var widget in allWidgets) {
+      var key = widget.key;
+      if (key != null && (key is ValueKey)) {
+        var value = key.value;
+        if (value is String) {
+          print(value);
+        }
+      }
+    }
+  }
+
+  void verify(
+      dynamic actual,
+      dynamic matcher, {
+        String reason,
+        dynamic skip, // true or a String
+      }) {
+
+    try {
+      expect(actual, matcher, reason: reason, skip: skip);
+    } catch (e) {
+      printStringValueKeys();
+      throw e;
+    }
+
+
+
+  }
+
 }
+
