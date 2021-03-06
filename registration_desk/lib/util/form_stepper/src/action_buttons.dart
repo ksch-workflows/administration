@@ -1,5 +1,18 @@
 import "package:flutter/material.dart";
 
+class _ButtonRow extends StatelessWidget {
+
+  final List<Widget> children;
+
+  const _ButtonRow(this.children);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
 class ActionButtons extends StatelessWidget {
   final Function onBack;
   final Function onCancel;
@@ -25,46 +38,58 @@ class ActionButtons extends StatelessWidget {
           children: [
             FocusTraversalOrder(
               order: const NumericFocusOrder(2),
-              child: Tooltip(
-                message: "Go back to the previous step.",
-                child: RaisedButton(
-                  key: const ValueKey("backButton"),
-                  child: const Text("Back"),
-                  onPressed: onBack,
-                ),
-              ),
+              child: _backButton(),
             ),
             Expanded(
               child: Container(),
             ),
             FocusTraversalOrder(
               order: const NumericFocusOrder(3),
-              child: RaisedButton(
-                key: const ValueKey("cancelButton"),
-                child: const Text("Cancel"),
-                onPressed: onCancel,
-              ),
+              child: _cancelButton(),
             ),
             const SizedBox(
               width: 20,
             ),
             FocusTraversalOrder(
               order: const NumericFocusOrder(1),
-              child: Tooltip(
-                message: "Go to the next step.",
-                child: RaisedButton(
-                  key: const ValueKey("continueButton"),
-                  color: Theme.of(context).accentColor,
-                  child: Text(
-                    isLastStep ? "Save" : "Continue",
-                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-                  ),
-                  onPressed: onContinue,
-                ),
-              ),
+              child: _continueButton(context),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Tooltip _continueButton(BuildContext context) {
+    return Tooltip(
+      message: "Go to the next step.",
+      child: RaisedButton(
+        key: const ValueKey("continueButton"),
+        color: Theme.of(context).accentColor,
+        child: Text(
+          isLastStep ? "Save" : "Continue",
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        ),
+        onPressed: onContinue,
+      ),
+    );
+  }
+
+  RaisedButton _cancelButton() {
+    return RaisedButton(
+      key: const ValueKey("cancelButton"),
+      child: const Text("Cancel"),
+      onPressed: onCancel,
+    );
+  }
+
+  Tooltip _backButton() {
+    return Tooltip(
+      message: "Go back to the previous step.",
+      child: RaisedButton(
+        key: const ValueKey("backButton"),
+        child: const Text("Back"),
+        onPressed: onBack,
       ),
     );
   }
