@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:get_it/get_it.dart";
+import 'package:registration_desk/util/test_bench.dart';
 
+import '../../context.dart';
 import "../../core/patient/patient.dart";
 import "../../core/patient/patient_service.dart";
 import "../../core/visit/visit_service.dart";
@@ -154,3 +156,15 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
     );
   }
 }
+
+void main() {
+  createMockContext();
+
+  runApp(
+    TestBench(
+      child: RegisterPatientPage(),
+      isFullPage: true,
+    ),
+  );
+}
+

@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:registration_desk/util/test_bench.dart';
 
 import "../../../util/form_stepper/form_stepper.dart";
 
@@ -100,4 +101,14 @@ class _VisitTypeFormStepBodyState extends State<_VisitTypeFormStepBody> {
       ),
     );
   }
+}
+
+void main() {
+  var contactInformationStep = VisitTypeFormStep(visitTypeSelection: FormValue<String>());
+
+  runApp(
+    TestBench(
+      child: contactInformationStep.body,
+    ),
+  );
 }
