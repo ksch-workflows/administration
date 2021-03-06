@@ -104,16 +104,14 @@ extension WidgetTesterExtensions on WidgetTester {
 
   void printStringValueKeys() {
     print("══╡ CURRENT STRING VALUE KEYS ╞═════════════════════════════════════════════════════════════════════");
-    var allWidgets = this.allWidgets;
-    for (var widget in allWidgets) {
-      var key = widget.key;
-      if (key != null && (key is ValueKey)) {
-        var value = key.value;
-        if (value is String) {
-          print(value);
-        }
-      }
-    }
+    allWidgets
+        .map((widget) => widget.key)
+        .where((key) => key != null && key is ValueKey)
+        .map((e) => e as ValueKey)
+        .map((e) => e.value)
+        .whereType<String>()
+        .toList()
+        .forEach(print);
   }
 
   void verify(
