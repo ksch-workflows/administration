@@ -22,6 +22,6 @@ samples, guidance on mobile development, and a full API reference.
 ```
 docker run --env ES_JAVA_OPTS="-Xms1024m -Xmx1024m" -d -p 9000:9000 -p 9092:9092 \
   experimentalsoftware/sonarqube-dart:0.1
-sonar-scanner
-
+sonar-scanner -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
+ccsh sonarimport http://localhost:9000 registration_desk > /tmp/sonar.json
 ```

@@ -57,7 +57,7 @@ class _FirstStep implements FormStep {
     return Form(
       key: formKey,
       child: TextFormField(
-        key: ValueKey("firstStepInput"),
+        key: const ValueKey("firstStepInput"),
         controller: firstStepInputController,
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -87,7 +87,7 @@ class _SecondStep implements FormStep {
     return Form(
       key: formKey,
       child: TextFormField(
-        key: ValueKey("secondStepInput"),
+        key: const ValueKey("secondStepInput"),
         controller: secondStepInputController,
       ),
     );
@@ -111,7 +111,7 @@ class _ThirdStep implements FormStep {
     return Form(
       key: formKey,
       child: TextFormField(
-        key: ValueKey("thirdStepInput"),
+        key: const ValueKey("thirdStepInput"),
         controller: thirdStepInputController,
       ),
     );

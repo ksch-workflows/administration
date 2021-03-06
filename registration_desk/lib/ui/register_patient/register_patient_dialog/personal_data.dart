@@ -75,20 +75,20 @@ class _PersonalDataFormState extends State<_PersonalDataForm> {
             }
             return null;
           },
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               labelText: "Patient's name*",
-              border: const OutlineInputBorder(),
+              border: OutlineInputBorder(),
               hintText: "Please enter the patient's name",
               helperText: "* Required"),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         TextFormField(
           controller: widget.fatherNameController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: "Father's name",
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(),
             hintText: "Please enter the patient father's name, if applicable",
           ),
         ),

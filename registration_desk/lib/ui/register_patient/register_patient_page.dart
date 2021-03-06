@@ -34,7 +34,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
       body: Column(
         children: [
           _buildActionRow(),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           _buildPatientTable(),
         ],
       ),
@@ -44,7 +44,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           searchTermController.clear();
-          var result = await showDialog(
+          final result = await showDialog(
               context: context,
               builder: (context) {
                 return RegisterPatientDialog(
@@ -52,7 +52,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
                 );
               });
           if (result != null) {
-            var createdPatient = patientService.create(result.patient);
+            final createdPatient = patientService.create(result.patient);
             visitService.startVisit(createdPatient.id);
             print("Patient created: ${createdPatient.id}");
           }
@@ -68,7 +68,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
       return Container();
     }
     if (matchingPatients.isEmpty) {
-      return Text("No patients found.");
+      return const Text("No patients found.");
     }
 
     return Flexible(
@@ -83,7 +83,7 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
                 scrollDirection: Axis.vertical,
                 controller: scrollController,
                 child: DataTable(
-                  columns: <DataColumn>[
+                  columns: const <DataColumn>[
                     DataColumn(
                       label: Text("OPD No."),
                     ),
@@ -133,12 +133,12 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
                 border: const OutlineInputBorder(),
                 hintText: "Search patient...",
                 suffixIcon: Container(
-                  child: Icon(Icons.search),
+                  child: const Icon(Icons.search),
                 ),
               ),
               onChanged: (value) {
                 setState(() {
-                  var normalizedValue = value.trim().toLowerCase();
+                  final normalizedValue = value.trim().toLowerCase();
                   if (normalizedValue.isEmpty) {
                     matchingPatients = null;
                   } else {

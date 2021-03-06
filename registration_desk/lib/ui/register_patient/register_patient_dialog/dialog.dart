@@ -21,7 +21,7 @@ class RegisterPatientResult {
 class RegisterPatientDialog extends StatefulWidget {
   final Function onDialogClose;
 
-  RegisterPatientDialog({
+  const RegisterPatientDialog({
     @required this.onDialogClose,
   }) : assert(onDialogClose != null);
 
@@ -62,10 +62,10 @@ class _RegisterPatientDialogState extends State<RegisterPatientDialog> {
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
-      title: Text("Register patient"),
+      title: const Text("Register patient"),
       children: <Widget>[
         ConstrainedBox(
-          constraints: BoxConstraints.tight(Size(800, 400)),
+          constraints: BoxConstraints.tight(const Size(800, 400)),
           child: FormStepper(
             steps: _steps,
             onCancel: cancel,
@@ -77,12 +77,12 @@ class _RegisterPatientDialogState extends State<RegisterPatientDialog> {
   }
 
   void save() {
-    var newPatient = Patient(
+    final newPatient = Patient(
       name: _model.nameController.text,
       fatherName: _model.fatherNameController.text,
       location: _model.locationController.text,
     );
-    var result = RegisterPatientResult(
+    final result = RegisterPatientResult(
       patient: newPatient,
       visitType: _model.visitTypeSelection.value,
     );

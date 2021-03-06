@@ -6,7 +6,7 @@ class TestBench extends StatelessWidget {
   final bool isFullPage;
   final Size pageSize;
 
-  TestBench({this.child, this.isFullPage = false, this.pageSize}) : assert(child != null);
+  const TestBench({this.child, this.isFullPage = false, this.pageSize}) : assert(child != null);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,9 @@ class TestBench extends StatelessWidget {
         title: const Text("Test Bench"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(100.0),
+        padding: const EdgeInsets.all(100.0),
         child: ConstrainedBox(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 800,
             maxHeight: 600,
           ),

@@ -64,9 +64,9 @@ class _ContactInformationFormState extends State<_ContactInformationForm> {
           }
           return null;
           },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             labelText: "Patient's location*",
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(),
         hintText: "Please enter the patient's location",
         helperText: "* Required",
       ),

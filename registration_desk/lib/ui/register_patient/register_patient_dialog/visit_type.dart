@@ -25,7 +25,7 @@ class _VisitTypeFormStepBody extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final FormValue<String> visitTypeSelection;
 
-  _VisitTypeFormStepBody({this.formKey, this.visitTypeSelection});
+  const _VisitTypeFormStepBody({this.formKey, this.visitTypeSelection});
 
   @override
   _VisitTypeFormStepBodyState createState() => _VisitTypeFormStepBodyState();

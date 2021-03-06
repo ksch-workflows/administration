@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 class TestApp extends StatelessWidget {
   final Widget testSubject;
 
-  TestApp(this.testSubject);
+  const TestApp(this.testSubject);
 
   @override
   Widget build(BuildContext context) {

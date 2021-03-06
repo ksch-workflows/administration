@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:flutter/widgets.dart';
+import "package:flutter/widgets.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:registration_desk/util/test_bench.dart";
 
@@ -10,7 +10,7 @@ void main() {
     var exampleStepper = ExampleStepper();
     await tester.open(exampleStepper);
 
-    var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
     await tester.enterText(firstStepInputField, "John Doe");
     await tester.pump();
 
@@ -20,7 +20,7 @@ void main() {
   testWidgets("Should go to next step", (tester) async {
     await tester.open(ExampleStepper());
 
-    var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
     await tester.enterText(firstStepInputField, "John Doe");
     await tester.pump();
 
@@ -31,7 +31,7 @@ void main() {
 
   testWidgets("Should go to previous step", (tester) async {
     await tester.open(ExampleStepper());
-    var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
     await tester.enterText(firstStepInputField, "John Doe");
     await tester.pump();
     await goToNextStep(tester);
@@ -48,7 +48,7 @@ void main() {
       onCancel: () => canceledHasBeenCalled = true,
     ));
 
-    var button = find.byKey(ValueKey("cancelButton"));
+    var button = find.byKey(const ValueKey("cancelButton"));
     await tester.tap(button);
 
     expect(canceledHasBeenCalled, isTrue);
@@ -57,7 +57,7 @@ void main() {
   testWidgets("Should validate form before going to the next step", (tester) async {
     await tester.open(ExampleStepper());
 
-    var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+    var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
     await tester.enterText(firstStepInputField, "");
     await goToNextStep(tester);
 
@@ -66,7 +66,7 @@ void main() {
 }
 
 Future goToNextStep(WidgetTester tester) async {
-  var continueButton = find.byKey(ValueKey("continueButton"));
+  var continueButton = find.byKey(const ValueKey("continueButton"));
   expect(continueButton, findsOneWidget);
 
   await tester.tap(continueButton);
@@ -74,7 +74,7 @@ Future goToNextStep(WidgetTester tester) async {
 }
 
 Future goToPreviousStep(WidgetTester tester) async {
-  var button = find.byKey(ValueKey("backButton"));
+  var button = find.byKey(const ValueKey("backButton"));
   expect(button, findsOneWidget);
 
   await tester.tap(button);
@@ -82,18 +82,18 @@ Future goToPreviousStep(WidgetTester tester) async {
 }
 
 void expectOnFirstPage(WidgetTester tester) {
-  var inputField = find.byKey(ValueKey("firstStepInput"));
+  var inputField = find.byKey(const ValueKey("firstStepInput"));
   expect(inputField, findsOneWidget);
 
-  var secondStepInputField = find.byKey(ValueKey("secondStepInput"));
+  var secondStepInputField = find.byKey(const ValueKey("secondStepInput"));
   expect(secondStepInputField, findsNothing);
 }
 
 void expectOnSecondPage(WidgetTester tester) {
-  var inputField = find.byKey(ValueKey("secondStepInput"));
+  var inputField = find.byKey(const ValueKey("secondStepInput"));
   tester.verify(inputField, findsOneWidget);
 
-  var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+  var firstStepInputField = find.byKey(const ValueKey("firstStepInput"));
   tester.verify(firstStepInputField, findsNothing);
 }
 

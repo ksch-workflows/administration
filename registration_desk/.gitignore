@@ -46,6 +46,4 @@ app.*.map.json
 /android/app/release
 
 # SonarCube
-sonar-project.properties
-sonar-flutter-plugin-*.jar
 .scannerwork/

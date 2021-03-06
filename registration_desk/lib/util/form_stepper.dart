@@ -29,7 +29,7 @@ class FormStepper extends StatefulWidget {
   final Function onCancel;
   final Function onSave;
 
-  FormStepper({
+  const FormStepper({
     @required this.steps,
     @required this.onCancel,
     @required this.onSave,
@@ -127,16 +127,16 @@ class _Header extends StatelessWidget {
   final List<String> stepTitles;
   final int currentStep;
 
-  _Header({@required this.stepTitles, @required this.currentStep}) : assert(stepTitles != null);
+  const _Header({@required this.stepTitles, @required this.currentStep}) : assert(stepTitles != null);
 
   @override
   Widget build(BuildContext context) {
-    var stepTitleWidgets = <Widget>[];
+    final stepTitleWidgets = <Widget>[];
     for (var i = 0; i < stepTitles.length; i++) {
-      Widget stepTitleWidget = Row(
+      final Widget stepTitleWidget = Row(
         children: [
           i == currentStep ? _ActiveIndexBubble(i) : _InactiveIndexBubble(i),
-          Text(stepTitles[i], style: i == currentStep ? TextStyle(fontWeight: FontWeight.bold) : null),
+          Text(stepTitles[i], style: i == currentStep ? const TextStyle(fontWeight: FontWeight.bold) : null),
         ],
       );
       stepTitleWidgets.add(stepTitleWidget);
@@ -145,7 +145,7 @@ class _Header extends StatelessWidget {
     return Column(
       children: [
         Row(children: [
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           ...stepTitleWidgets,
         ]),
         Container(
@@ -164,7 +164,7 @@ class _ActionButtons extends StatelessWidget {
   final Function onContinue;
   final bool isLastStep;
 
-  _ActionButtons({
+  const _ActionButtons({
     @required this.onBack,
     @required this.onCancel,
     @required this.onContinue,
@@ -182,12 +182,12 @@ class _ActionButtons extends StatelessWidget {
         child: Row(
           children: [
             FocusTraversalOrder(
-              order: NumericFocusOrder(2),
+              order: const NumericFocusOrder(2),
               child: Tooltip(
                 message: "Go back to the previous step.",
                 child: RaisedButton(
-                  key: ValueKey("backButton"),
-                  child: Text("Back"),
+                  key: const ValueKey("backButton"),
+                  child: const Text("Back"),
                   onPressed: onBack,
                 ),
               ),
@@ -196,22 +196,22 @@ class _ActionButtons extends StatelessWidget {
               child: Container(),
             ),
             FocusTraversalOrder(
-              order: NumericFocusOrder(3),
+              order: const NumericFocusOrder(3),
               child: RaisedButton(
-                key: ValueKey("cancelButton"),
-                child: Text("Cancel"),
+                key: const ValueKey("cancelButton"),
+                child: const Text("Cancel"),
                 onPressed: onCancel,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             FocusTraversalOrder(
-              order: NumericFocusOrder(1),
+              order: const NumericFocusOrder(1),
               child: Tooltip(
                 message: "Go to the next step.",
                 child: RaisedButton(
-                  key: ValueKey("continueButton"),
+                  key: const ValueKey("continueButton"),
                   color: Theme.of(context).accentColor,
                   child: Text(
                     isLastStep ? "Save" : "Continue",
@@ -233,7 +233,7 @@ class _IndexBubble extends StatelessWidget {
   final Color foregroundColor;
   final Color backgroundColor;
 
-  _IndexBubble({
+  const _IndexBubble({
     this.index,
     this.foregroundColor,
     this.backgroundColor,
@@ -242,7 +242,7 @@ class _IndexBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: backgroundColor,
         shape: BoxShape.circle,
@@ -263,7 +263,7 @@ class _IndexBubble extends StatelessWidget {
 class _ActiveIndexBubble extends StatelessWidget {
   final int index;
 
-  _ActiveIndexBubble(this.index);
+  const _ActiveIndexBubble(this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +278,7 @@ class _ActiveIndexBubble extends StatelessWidget {
 class _InactiveIndexBubble extends StatelessWidget {
   final int index;
 
-  _InactiveIndexBubble(this.index);
+  const _InactiveIndexBubble(this.index);
 
   @override
   Widget build(BuildContext context) {

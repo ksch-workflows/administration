@@ -56,7 +56,7 @@ class WebScaffold extends StatelessWidget {
           ),
           child: body,
         ),
-        SizedBox(
+        const SizedBox(
           width: 100,
         ),
       ],
@@ -68,7 +68,7 @@ class _AppBar extends StatelessWidget {
   final String title;
   final Function onNavigateBack;
 
-  _AppBar({
+  const _AppBar({
     @required this.title,
     this.onNavigateBack,
   }) : assert(title != null);
@@ -104,10 +104,10 @@ class _AppBar extends StatelessWidget {
         _homeButton(context, buttonColor),
         _backButton(buttonColor),
         Padding(
-          padding: EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20),
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               //fontWeight: FontWeight.bold,
               fontSize: 25,
@@ -142,12 +142,12 @@ class _AppBar extends StatelessWidget {
   Widget _backButton(Color buttonColor) {
     if (onNavigateBack != null) {
       return IconButton(
-        icon: Icon(Icons.arrow_back),
+        icon: const Icon(Icons.arrow_back),
         color: buttonColor,
         onPressed: onNavigateBack,
       );
     } else {
-      return SizedBox(
+      return const SizedBox(
         width: 40,
       );
     }
@@ -160,8 +160,8 @@ void main() {
       child: WebScaffold(
         title: "Hello",
         body: Row(
-          children: [
-            const Text("Hello, Test Bench!"),
+          children: const [
+            Text("Hello, Test Bench!"),
           ],
         ),
       ),

@@ -13,7 +13,7 @@ abstract class PatientService {
 class MockPatientService implements PatientService {
   @override
   Patient create(Patient patient) {
-    var result = Patient(
+    final result = Patient(
       id: Uuid().v4(),
       name: patient.name,
       opdNumber: "20-${_nextOptNumberSuffix++}",
