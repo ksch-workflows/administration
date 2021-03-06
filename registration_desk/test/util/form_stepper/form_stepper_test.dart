@@ -20,9 +20,9 @@ void main() {
   testWidgets("Should go to next step", (tester) async {
     await tester.open(ExampleStepper());
 
-    // var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
-    // await tester.enterText(firstStepInputField, "John Doe");
-    //await tester.pump();
+    var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+    await tester.enterText(firstStepInputField, "John Doe");
+    await tester.pump();
 
     await goToNextStep(tester);
 
@@ -31,6 +31,9 @@ void main() {
 
   testWidgets("Should go to previous step", (tester) async {
     await tester.open(ExampleStepper());
+    var firstStepInputField = find.byKey(ValueKey("firstStepInput"));
+    await tester.enterText(firstStepInputField, "John Doe");
+    await tester.pump();
     await goToNextStep(tester);
     expectOnSecondPage(tester);
 
@@ -106,9 +109,8 @@ extension WidgetTesterExtensions on WidgetTester {
     print("══╡ CURRENT STRING VALUE KEYS ╞═════════════════════════════════════════════════════════════════════");
     allWidgets
         .map((widget) => widget.key)
-        .where((key) => key != null && key is ValueKey)
-        .map((e) => e as ValueKey)
-        .map((e) => e.value)
+        .whereType<ValueKey>()
+        .map((key) => key.value)
         .whereType<String>()
         .toList()
         .forEach(print);
