@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ curl 'http://localhost:8080/api/patients' -i -X POST \
-    -H 'Accept: application/json'
-----

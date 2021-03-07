@@ -1,4 +1,0 @@
-[source,options="nowrap"]
-----
-{"patientNumber":null,"name":null,"age":null,"gender":null,"phoneNumber":null,"residentialAddress":null,"patientCategory":null,"_id":"84ed03ca-f329-4795-9fd0-14343dbaabdb","_links":{"self":{"href":"http://localhost:8080/84ed03ca-f329-4795-9fd0-14343dbaabdb"}}}
-----
