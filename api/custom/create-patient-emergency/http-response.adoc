@@ -1,0 +1,8 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 260
+
+{"patientNumber":null,"name":null,"age":null,"gender":null,"phoneNumber":null,"residentialAddress":null,"patientCategory":null,"_id":"84ed03ca-f329-4795-9fd0-14343dbaabdb","_links":{"self":{"href":"http://localhost:8080/84ed03ca-f329-4795-9fd0-14343dbaabdb"}}}
+----

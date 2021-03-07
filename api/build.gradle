@@ -1,5 +1,6 @@
 plugins {
 	id 'com.google.cloud.tools.appengine' version '2.4.1'
+	id 'org.asciidoctor.convert' version '1.5.9.2'
 	id 'org.springframework.boot' version '2.4.3'
 	id 'idea'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -21,17 +22,35 @@ repositories {
 }
 
 dependencies {
+	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+	runtimeOnly 'com.h2database:h2'
+
+	// Spring
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+ext {
+	snippetsDir = file('build/generated-snippets')
 }
 
 test {
 	useJUnitPlatform()
+	outputs.dir snippetsDir
+}
+
+asciidoctor {
+	inputs.dir snippetsDir
+	dependsOn test
 }
 
 appengine {
