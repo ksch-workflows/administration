@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
@@ -30,8 +32,8 @@ class PatientController {
     private final PatientRepository patientRepository;
 
     @PostMapping("/patients")
-    EntityModel<PatientPayload> createPatient(@RequestBody PatientPayload request) {
-        var patientDao = patientRepository.save(new PatientDao(request));
+    EntityModel<PatientPayload> createPatient(@RequestBody Optional<PatientPayload> request) {
+        var patientDao = patientRepository.save(new PatientDao(request.orElse(new PatientPayload())));
         return toResourceRepresentationModel(new PatientPayload(patientDao));
     }
 
