@@ -33,9 +33,6 @@ public class TypeConverter<S> {
     // TODO Don't use "SneakyThrows" here.
     @SneakyThrows
     public <T extends S> T convertTo(S source, Class<T> target) {
-
-        // TODO Check that target class has a default constructor
-
         var targetConstructor = target.getDeclaredConstructor();
         targetConstructor.setAccessible(true);
         T targetInstance = targetConstructor.newInstance();
@@ -69,7 +66,7 @@ public class TypeConverter<S> {
                 return method;
             }
         }
-        throw new IllegalArgumentException("Cannot find corresponding setter for '" + getterName + "' in type '"
+        throw new IllegalArgumentException("Cannot find corresponding setter for getter '" + getterName + "()' in type '"
                 + target.getTypeName() + "'.");
     }
 }

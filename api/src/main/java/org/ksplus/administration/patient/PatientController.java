@@ -41,6 +41,7 @@ class PatientController {
 
     @PostMapping("/patients")
     EntityModel<PatientPayload> createPatient(@RequestBody Optional<PatientPayload> request) {
+        // TODO Use service method to create patient
         var patientDao = patientRepository.save(PatientDao.from(request.orElse(new PatientPayload())));
         return toResourceRepresentationModel(PatientPayload.from(patientDao));
     }

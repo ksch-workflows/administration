@@ -26,7 +26,7 @@ import static org.ksplus.administration.util.ObjectVerifier.verifyAllFieldsAreSe
 class PatientDaoTest {
 
     @Test
-    public void should_provide_shallow_copy_constructor() {
+    public void should_create_shallow_copy() {
         var originalPatientDao = PatientDao.builder()
                 .id(UUID.randomUUID())
                 .name("John Doe")
@@ -43,16 +43,5 @@ class PatientDaoTest {
 
         assertEquals(originalPatientDao, convertedPatientDao);
     }
-
-    @Test
-    public void should_convert_dao_to_payload() {
-        var payload = PatientPayload.builder()
-                .id(UUID.randomUUID())
-                .gender(MALE)
-                .build();
-
-        var dao = PatientConverter.convertTo(payload, PatientDao.class);
-
-        System.out.println("xxx");
-    }
 }
+
