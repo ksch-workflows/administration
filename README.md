@@ -6,8 +6,8 @@ This repository contains the source code for apps which support the Administrati
 
 ### Dependencies
 
-- Flutter - [Dart](https://dart.dev)-based frontend development framework for the web, mobile, desktop, and embedded devices.
-- Gradle - used to manage the compilation of the source code into an executable application.
+- Flutter: [Dart](https://dart.dev)-based frontend development framework for the web, mobile, desktop, and embedded devices.
+- Gradle: used to manage the compilation of the source code into an executable application.
 
 ## Maintenance
 
