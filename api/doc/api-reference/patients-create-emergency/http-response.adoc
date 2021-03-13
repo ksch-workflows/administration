@@ -2,15 +2,15 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 330
+Content-Length: 343
 
 {
+  "_id" : "743a85e8-57d0-4516-8511-c5c69270d086",
   "_links" : {
     "self" : {
-      "href" : "http://localhost:8080/7b1156a3-2e08-4036-861f-7ffeb33bd9d1"
+      "href" : "http://localhost:8080/api/patients/743a85e8-57d0-4516-8511-c5c69270d086"
     }
   },
-  "_id" : "7b1156a3-2e08-4036-861f-7ffeb33bd9d1",
   "age" : null,
   "gender" : null,
   "name" : null,

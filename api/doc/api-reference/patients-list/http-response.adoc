@@ -1,0 +1,79 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 1898
+
+{
+  "_embedded" : {
+    "patientModelList" : [ {
+      "_id" : "8ce4823b-3d14-40ac-81e2-84c4fd8128fd",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/patients/8ce4823b-3d14-40ac-81e2-84c4fd8128fd"
+        }
+      },
+      "age" : null,
+      "gender" : "MALE",
+      "name" : "John Doe",
+      "patientCategory" : "GENERAL",
+      "patientNumber" : "10-1002",
+      "phoneNumber" : "0123456789",
+      "residentialAddress" : "Guesthouse"
+    }, {
+      "_id" : "743a85e8-57d0-4516-8511-c5c69270d086",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/patients/743a85e8-57d0-4516-8511-c5c69270d086"
+        }
+      },
+      "age" : null,
+      "gender" : null,
+      "name" : null,
+      "patientCategory" : null,
+      "patientNumber" : null,
+      "phoneNumber" : null,
+      "residentialAddress" : null
+    }, {
+      "_id" : "dca868b5-4a18-4e5c-8432-024c752f94be",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/patients/dca868b5-4a18-4e5c-8432-024c752f94be"
+        }
+      },
+      "age" : null,
+      "gender" : null,
+      "name" : null,
+      "patientCategory" : null,
+      "patientNumber" : null,
+      "phoneNumber" : null,
+      "residentialAddress" : null
+    }, {
+      "_id" : "380dbad2-b643-45bb-9094-047213107add",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/patients/380dbad2-b643-45bb-9094-047213107add"
+        }
+      },
+      "age" : null,
+      "gender" : null,
+      "name" : null,
+      "patientCategory" : null,
+      "patientNumber" : null,
+      "phoneNumber" : null,
+      "residentialAddress" : null
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/api/patients?page=0&size=20"
+    }
+  },
+  "page" : {
+    "number" : 0,
+    "size" : 20,
+    "totalElements" : 4,
+    "totalPages" : 1
+  }
+}
+----

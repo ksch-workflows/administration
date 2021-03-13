@@ -2,15 +2,15 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 364
+Content-Length: 377
 
 {
+  "_id" : "8ce4823b-3d14-40ac-81e2-84c4fd8128fd",
   "_links" : {
     "self" : {
-      "href" : "http://localhost:8080/9a6f078c-2fa6-4473-902f-0a01cdc7a239"
+      "href" : "http://localhost:8080/api/patients/8ce4823b-3d14-40ac-81e2-84c4fd8128fd"
     }
   },
-  "_id" : "9a6f078c-2fa6-4473-902f-0a01cdc7a239",
   "age" : null,
   "gender" : "MALE",
   "name" : "John Doe",
