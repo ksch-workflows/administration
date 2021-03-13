@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration.registration;
+package org.ksplus.administration.patient;
 
 import java.util.UUID;
 
 public interface Patient {
     UUID getId();
-    Object getPatientNumber();
-    Object getName();
-    Object getAge();
-    Object getGender();
-    Object getPhoneNumber();
-    Object getResidentialAddress();
-    Object getPatientCategory();
+    String getPatientNumber();
+    String getName();
+    Integer getAge();
+    Gender getGender();
+    String getPhoneNumber();
+    String getResidentialAddress();
+    String getPatientCategory();
 }

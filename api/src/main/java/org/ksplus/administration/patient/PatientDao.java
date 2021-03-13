@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration.registration;
+package org.ksplus.administration.patient;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.ksplus.administration.util.TypeConverter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,7 +51,7 @@ class PatientDao implements Patient {
 
     private Integer age;
 
-    private String gender;
+    private Gender gender;
 
     private String phoneNumber;
 
@@ -58,29 +59,7 @@ class PatientDao implements Patient {
 
     private String patientCategory;
 
-    PatientDao(Patient patient) {
-        id = patient.getId();
-
-        if (patient.getPatientNumber() != null) {
-            setPatientNumber(patient.getPatientNumber().toString());
-        }
-        if (patient.getName() != null) {
-            setName(patient.getName().toString());
-        }
-        if (patient.getAge() != null) {
-            setAge((Integer) patient.getAge());
-        }
-        if (patient.getGender() != null) {
-            setGender(patient.getGender().toString());
-        }
-        if (patient.getPhoneNumber() != null) {
-            setPhoneNumber(patient.getPhoneNumber().toString());
-        }
-        if (patient.getResidentialAddress() != null) {
-            setResidentialAddress(patient.getResidentialAddress().toString());
-        }
-        if (patient.getPatientCategory() != null) {
-            setPatientCategory(patient.getPatientCategory().toString());
-        }
+    public static PatientDao from(Patient patient) {
+        return new TypeConverter<>(Patient.class).convertTo(patient, PatientDao.class);
     }
 }

@@ -13,33 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration.registration;
+package org.ksplus.administration.patient;
 
+import lombok.val;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.ksplus.administration.patient.Gender.MALE;
 import static org.ksplus.administration.util.ObjectVerifier.verifyAllFieldsAreSet;
 
-class PatientDaoTest {
+class PatientModelTest {
 
     @Test
-    public void should_provide_copy_constructor() {
-        var originalPatientDao = PatientDao.builder()
+    public void should_create_shallow_copy() {
+        val originalPatientModel = PatientModel.builder()
                 .id(UUID.randomUUID())
+                .gender(MALE)
+                .age(27)
                 .name("John Doe")
                 .patientCategory("GENERAL")
-                .age(21)
-                .phoneNumber("1234567890")
-                .residentialAddress("Guest house")
-                .patientNumber("2021-3247889")
-                .gender("MALE")
+                .patientNumber("10-1000")
+                .phoneNumber("0123456789")
+                .residentialAddress("Guesthouse")
                 .build();
-        verifyAllFieldsAreSet(originalPatientDao);
+        verifyAllFieldsAreSet(originalPatientModel);
 
-        var convertedPatientDao = new PatientDao(originalPatientDao);
+        var convertedPatientModel = PatientModel.from(originalPatientModel);
 
-        assertEquals(originalPatientDao, convertedPatientDao);
+        assertEquals(originalPatientModel, convertedPatientModel);
     }
 }
+
