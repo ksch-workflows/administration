@@ -15,14 +15,12 @@
  */
 package org.ksplus.administration.registration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.ksplus.administration.util.ObjectVerifier.verifyAllFieldsAreSet;
 
 class PatientDaoTest {
 
@@ -44,15 +42,4 @@ class PatientDaoTest {
 
         assertEquals(originalPatientDao, convertedPatientDao);
     }
-
-    @SneakyThrows
-    private void verifyAllFieldsAreSet(Object object) {
-        var objectMapper = new ObjectMapper();
-        var json = objectMapper.writeValueAsString(object);
-        if (json.contains("null")) {
-            var message = "The provided object contains one or more fields which are not initialized: " + json;
-            throw new AssertionFailedError(message);
-        }
-    }
-
 }
