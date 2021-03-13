@@ -19,11 +19,11 @@ import java.util.UUID;
 
 public interface Patient {
     UUID getId();
-    Object getPatientNumber();
-    Object getName();
-    Object getAge();
-    Object getGender();
-    Object getPhoneNumber();
-    Object getResidentialAddress();
-    Object getPatientCategory();
+    String getPatientNumber();
+    String getName();
+    Integer getAge();
+    Gender getGender();
+    String getPhoneNumber();
+    String getResidentialAddress();
+    String getPatientCategory();
 }

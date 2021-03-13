@@ -50,7 +50,7 @@ class PatientDao implements Patient {
 
     private Integer age;
 
-    private String gender;
+    private Gender gender;
 
     private String phoneNumber;
 

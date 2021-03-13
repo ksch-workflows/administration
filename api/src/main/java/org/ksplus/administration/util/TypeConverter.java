@@ -46,6 +46,7 @@ public class TypeConverter<S> {
             if (value != null) {
                 var setter = findSetter(target, getter);
                 setter.setAccessible(true);
+                // TODO Throw descriptive exception in case of type mismatch
                 setter.invoke(targetInstance, value);
             }
         }

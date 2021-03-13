@@ -8,6 +8,6 @@ class PatientModelAssembler implements RepresentationModelAssembler<Patient, Pat
 
     @Override
     public PatientModel toModel(Patient patient) {
-        return new PatientModel(patient);
+        return PatientConverter.convertTo(patient, PatientModel.class);
     }
 }

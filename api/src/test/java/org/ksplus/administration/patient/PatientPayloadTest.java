@@ -20,16 +20,17 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.ksplus.administration.patient.Gender.MALE;
 import static org.ksplus.administration.util.ObjectVerifier.verifyAllFieldsAreSet;
 
 class PatientPayloadTest {
 
     @Test
-    public void should_provide_mapping_constructor() {
+    public void should_create_shallow_copy() {
         var originalPayload = PatientPayload.builder()
                 .id(UUID.randomUUID())
                 .age(21)
-                .gender("MALE")
+                .gender(MALE)
                 .name("John Doe")
                 .patientCategory("GENERAL")
                 .patientNumber("2021-2343243")
@@ -38,7 +39,7 @@ class PatientPayloadTest {
                 .build();
         verifyAllFieldsAreSet(originalPayload);
 
-        var convertedPayload = new PatientPayload(originalPayload);
+        var convertedPayload = PatientPayload.from(originalPayload);
 
         assertEquals(originalPayload, convertedPayload);
     }

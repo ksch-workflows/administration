@@ -16,11 +16,11 @@
 package org.ksplus.administration.patient;
 
 import org.junit.jupiter.api.Test;
-import org.ksplus.administration.util.TypeConverter;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.ksplus.administration.patient.Gender.MALE;
 import static org.ksplus.administration.util.ObjectVerifier.verifyAllFieldsAreSet;
 
 class PatientDaoTest {
@@ -35,7 +35,7 @@ class PatientDaoTest {
                 .phoneNumber("1234567890")
                 .residentialAddress("Guest house")
                 .patientNumber("2021-3247889")
-                .gender("MALE")
+                .gender(MALE)
                 .build();
         verifyAllFieldsAreSet(originalPatientDao);
 
@@ -45,19 +45,13 @@ class PatientDaoTest {
     }
 
     @Test
-    public void should_covert_dao_to_payload() {
-        var originalPatientDao = PatientDao.builder()
+    public void should_convert_dao_to_payload() {
+        var payload = PatientPayload.builder()
                 .id(UUID.randomUUID())
-                .name("John Doe")
-                .patientCategory("GENERAL")
-                .age(21)
-                .phoneNumber("1234567890")
-                .residentialAddress("Guest house")
-                .patientNumber("2021-3247889")
-                .gender("MALE")
+                .gender(MALE)
                 .build();
 
-        var convertedPatient = new TypeConverter<>(Patient.class).convertTo(originalPatientDao, PatientPayload.class);
+        var dao = PatientConverter.convertTo(payload, PatientDao.class);
 
         System.out.println("xxx");
     }
