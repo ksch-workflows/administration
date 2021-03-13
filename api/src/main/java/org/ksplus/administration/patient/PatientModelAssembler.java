@@ -13,19 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration.util;
+package org.ksplus.administration.patient;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.method.HandlerTypePredicate;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.stereotype.Component;
 
-@Configuration
-class WebMvcConfig implements WebMvcConfigurer {
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
+@Component
+class PatientModelAssembler implements RepresentationModelAssembler<Patient, PatientModel> {
 
     @Override
-    public void configurePathMatch(PathMatchConfigurer configurer) {
-        configurer.addPathPrefix("api", HandlerTypePredicate.forAnnotation(RestController.class));
+    public PatientModel toModel(Patient patient) {
+        var result = PatientModel.from(patient);
+        var selfLink = linkTo(PatientController.class).slash(patient.getId()).withSelfRel();
+        result.add(selfLink);
+        return result;
     }
 }
