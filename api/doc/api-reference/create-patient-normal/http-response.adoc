@@ -1,0 +1,22 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 364
+
+{
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/9a6f078c-2fa6-4473-902f-0a01cdc7a239"
+    }
+  },
+  "_id" : "9a6f078c-2fa6-4473-902f-0a01cdc7a239",
+  "age" : null,
+  "gender" : "MALE",
+  "name" : "John Doe",
+  "patientCategory" : "GENERAL",
+  "patientNumber" : "10-1002",
+  "phoneNumber" : "0123456789",
+  "residentialAddress" : "Guesthouse"
+}
+----

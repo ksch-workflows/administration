@@ -1,0 +1,15 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/patients' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -d '{
+  "gender" : "MALE",
+  "name" : "John Doe",
+  "patientCategory" : "GENERAL",
+  "patientNumber" : "10-1002",
+  "phoneNumber" : "0123456789",
+  "residentialAddress" : "Guesthouse"
+}
+'
+----
