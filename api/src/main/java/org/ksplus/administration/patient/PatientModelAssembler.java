@@ -11,6 +11,8 @@ class PatientModelAssembler implements RepresentationModelAssembler<Patient, Pat
     @Override
     public PatientModel toModel(Patient patient) {
         var result = PatientTypeConverter.convertTo(patient, PatientModel.class);
+
+
         var selfLink = linkTo(PatientController.class).slash(patient.getId()).withSelfRel();
         result.add(selfLink);
         return result;

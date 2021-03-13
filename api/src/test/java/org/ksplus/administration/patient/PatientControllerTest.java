@@ -112,13 +112,7 @@ public class PatientControllerTest {
         mockMvc.perform(get("/api/patients").accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("_id", is(notNullValue())))
-                .andExpect(jsonPath("gender", is(equalTo("MALE"))))
-                .andExpect(jsonPath("name", is(equalTo("John Doe"))))
-                .andExpect(jsonPath("patientCategory", is(equalTo("GENERAL"))))
-                .andExpect(jsonPath("patientNumber", is(equalTo("10-1002"))))
-                .andExpect(jsonPath("phoneNumber", is(equalTo("0123456789"))))
-                .andExpect(jsonPath("residentialAddress", is(equalTo("Guesthouse"))))
+                .andExpect(jsonPath("page.totalElements", is(equalTo(2))))
                 .andDo(document("patients-list"));
     }
 }

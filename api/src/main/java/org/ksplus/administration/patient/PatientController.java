@@ -22,11 +22,13 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/patients")
 @RequiredArgsConstructor
 class PatientController {
 
@@ -36,14 +38,14 @@ class PatientController {
 
     private final PatientModelAssembler patientModelAssembler;
 
-    @PostMapping("/patients")
+    @PostMapping
     PatientModel createPatient(@RequestBody Optional<PatientPayload> request) {
         // TODO Use service method to create patient
         var patientDao = patientRepository.save(PatientDao.from(request.orElse(new PatientPayload())));
         return patientModelAssembler.toModel(patientDao);
     }
 
-    @GetMapping("/patients")
+    @GetMapping
     PagedModel<PatientModel> getPatients(Pageable pageable) {
         var patients = patientRepository.findAll(pageable).map(p -> (Patient) p);
         return pagedResourcesAssembler.toModel(patients, patientModelAssembler);
