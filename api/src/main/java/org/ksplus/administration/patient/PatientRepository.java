@@ -13,17 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration.registration;
+package org.ksplus.administration.patient;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface Patient {
-    UUID getId();
-    Object getPatientNumber();
-    Object getName();
-    Object getAge();
-    Object getGender();
-    Object getPhoneNumber();
-    Object getResidentialAddress();
-    Object getPatientCategory();
+interface PatientRepository extends JpaRepository<PatientDao, UUID> {
 }

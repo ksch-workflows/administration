@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration.registration;
+package org.ksplus.administration.patient;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +37,7 @@ import static org.springframework.restdocs.cli.CliDocumentation.curlRequest;
 import static org.springframework.restdocs.http.HttpDocumentation.httpResponse;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -45,6 +46,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 public class PatientControllerTest {
+
+    @Autowired
+    private PatientService patientService;
 
     @Autowired
     private WebApplicationContext context;
@@ -73,7 +77,7 @@ public class PatientControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("_id", is(notNullValue())))
                 .andDo(print())
-                .andDo(document("create-patient-emergency"));
+                .andDo(document("patients-create-emergency"));
     }
 
     @Test
@@ -96,6 +100,25 @@ public class PatientControllerTest {
                 .andExpect(jsonPath("patientNumber", is(equalTo("10-1002"))))
                 .andExpect(jsonPath("phoneNumber", is(equalTo("0123456789"))))
                 .andExpect(jsonPath("residentialAddress", is(equalTo("Guesthouse"))))
-                .andDo(document("create-patient-normal"));
+                .andDo(document("patients-create-normal"));
+    }
+
+    @Test
+    @SneakyThrows
+    public void should_list_patients() {
+        patientService.createPatient();
+        patientService.createPatient();
+
+        mockMvc.perform(get("/api/patients").accept(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("_id", is(notNullValue())))
+                .andExpect(jsonPath("gender", is(equalTo("MALE"))))
+                .andExpect(jsonPath("name", is(equalTo("John Doe"))))
+                .andExpect(jsonPath("patientCategory", is(equalTo("GENERAL"))))
+                .andExpect(jsonPath("patientNumber", is(equalTo("10-1002"))))
+                .andExpect(jsonPath("phoneNumber", is(equalTo("0123456789"))))
+                .andExpect(jsonPath("residentialAddress", is(equalTo("Guesthouse"))))
+                .andDo(document("patients-list"));
     }
 }

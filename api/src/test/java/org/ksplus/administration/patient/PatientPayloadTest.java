@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration.registration;
+package org.ksplus.administration.patient;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,24 +22,24 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.ksplus.administration.util.ObjectVerifier.verifyAllFieldsAreSet;
 
-class PatientDaoTest {
+class PatientPayloadTest {
 
     @Test
-    public void should_provide_copy_constructor() {
-        var originalPatientDao = PatientDao.builder()
+    public void should_provide_mapping_constructor() {
+        var originalPayload = PatientPayload.builder()
                 .id(UUID.randomUUID())
+                .age(21)
+                .gender("MALE")
                 .name("John Doe")
                 .patientCategory("GENERAL")
-                .age(21)
-                .phoneNumber("1234567890")
-                .residentialAddress("Guest house")
-                .patientNumber("2021-3247889")
-                .gender("MALE")
+                .patientNumber("2021-2343243")
+                .phoneNumber("0123456789")
+                .residentialAddress("Guesthouse")
                 .build();
-        verifyAllFieldsAreSet(originalPatientDao);
+        verifyAllFieldsAreSet(originalPayload);
 
-        var convertedPatientDao = new PatientDao(originalPatientDao);
+        var convertedPayload = new PatientPayload(originalPayload);
 
-        assertEquals(originalPatientDao, convertedPatientDao);
+        assertEquals(originalPayload, convertedPayload);
     }
 }
