@@ -13,16 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration;
+package org.ksplus.administration.registration;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@SpringBootApplication
-public class AdministrationApplication {
+import java.util.UUID;
 
-	public static void main(String[] args) {
-		SpringApplication.run(AdministrationApplication.class, args);
-	}
-
+interface PatientRepository extends JpaRepository<PatientDao, UUID> {
 }

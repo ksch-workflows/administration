@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 KS-plus e.V.
+ * Copyright 2019 KS-plus e.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@org.hibernate.annotations.GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator"
+)
 package org.ksplus.administration;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class AdministrationApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(AdministrationApplication.class, args);
-	}
-
-}

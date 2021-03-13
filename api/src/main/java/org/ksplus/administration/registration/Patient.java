@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ksplus.administration;
+package org.ksplus.administration.registration;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.UUID;
 
-@SpringBootApplication
-public class AdministrationApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(AdministrationApplication.class, args);
-	}
-
+public interface Patient {
+    UUID getId();
+    Object getPatientNumber();
+    Object getName();
+    Object getAge();
+    Object getGender();
+    Object getPhoneNumber();
+    Object getResidentialAddress();
+    Object getPatientCategory();
 }
