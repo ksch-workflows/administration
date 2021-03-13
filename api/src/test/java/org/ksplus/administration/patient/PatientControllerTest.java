@@ -30,6 +30,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -112,7 +113,7 @@ public class PatientControllerTest {
         mockMvc.perform(get("/api/patients").accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("page.totalElements", is(equalTo(2))))
+                .andExpect(jsonPath("page.totalElements", is(greaterThanOrEqualTo(2))))
                 .andDo(document("patients-list"));
     }
 }
