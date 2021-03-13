@@ -18,7 +18,6 @@ package org.ksplus.administration.patient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,23 +37,15 @@ class PatientController {
     private final PatientModelAssembler patientModelAssembler;
 
     @PostMapping("/patients")
-    EntityModel<PatientPayload> createPatient(@RequestBody Optional<PatientPayload> request) {
+    PatientModel createPatient(@RequestBody Optional<PatientPayload> request) {
         // TODO Use service method to create patient
         var patientDao = patientRepository.save(PatientDao.from(request.orElse(new PatientPayload())));
-        return toResourceRepresentationModel(PatientPayload.from(patientDao));
+        return patientModelAssembler.toModel(patientDao);
     }
 
     @GetMapping("/patients")
     PagedModel<PatientModel> getPatients(Pageable pageable) {
         var patients = patientRepository.findAll(pageable).map(p -> (Patient) p);
         return pagedResourcesAssembler.toModel(patients, patientModelAssembler);
-    }
-
-    // TODO This can also be used with the "PatientModel", can't it?
-    private EntityModel<PatientPayload> toResourceRepresentationModel(PatientPayload patient) {
-        var result = EntityModel.of(patient);
-        var selfLink = linkTo(PatientController.class).slash(patient.getId()).withSelfRel();
-        result.add(selfLink);
-        return result;
     }
 }

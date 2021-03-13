@@ -59,6 +59,6 @@ class PatientDao implements Patient {
     private String patientCategory;
 
     public static PatientDao from(Patient patient) {
-        return PatientConverter.convertTo(patient, PatientDao.class);
+        return PatientTypeConverter.convertTo(patient, PatientDao.class);
     }
 }

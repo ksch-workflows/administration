@@ -45,6 +45,6 @@ class PatientPayload implements Patient {
     private String patientCategory;
 
     public static PatientPayload from(Patient patient) {
-        return PatientConverter.convertTo(patient, PatientPayload.class);
+        return PatientTypeConverter.convertTo(patient, PatientPayload.class);
     }
 }
