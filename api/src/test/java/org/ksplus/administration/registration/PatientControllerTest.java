@@ -19,6 +19,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.ksplus.administration.util.TestResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.restdocs.RestDocumentationContextProvider;
@@ -28,6 +29,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -72,5 +74,28 @@ public class PatientControllerTest {
                 .andExpect(jsonPath("_id", is(notNullValue())))
                 .andDo(print())
                 .andDo(document("create-patient-emergency"));
+    }
+
+    @Test
+    @SneakyThrows
+    public void should_create_patient_with_payload() {
+        var payload = new TestResource("create-patient.json").readString();
+        mockMvc.perform(
+                post("/api/patients")
+                        .content(payload)
+                        .contentType(APPLICATION_JSON)
+                        .accept(APPLICATION_JSON)
+                        .characterEncoding("UTF-8")
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("_id", is(notNullValue())))
+                .andExpect(jsonPath("gender", is(equalTo("MALE"))))
+                .andExpect(jsonPath("name", is(equalTo("John Doe"))))
+                .andExpect(jsonPath("patientCategory", is(equalTo("GENERAL"))))
+                .andExpect(jsonPath("patientNumber", is(equalTo("10-1002"))))
+                .andExpect(jsonPath("phoneNumber", is(equalTo("0123456789"))))
+                .andExpect(jsonPath("residentialAddress", is(equalTo("Guesthouse"))))
+                .andDo(document("create-patient-normal"));
     }
 }
