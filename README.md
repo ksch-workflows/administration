@@ -1,3 +1,7 @@
+⚠️ Instead of having the backend and all clients in one monorepo, there will be one repo for the backend and one repo for each client. See https://github.com/ksch-workflows/backend and https://github.com/ksch-workflows/registration-desk for the ongoing work.
+
+--------
+
 # Administration
 
 This repository contains the source code for apps which support the Administration department in the [Kirpal Sagar Charitable Hospital](https://kirpal-sagar.org/en/kirpal-charitable-hospital-en/).
